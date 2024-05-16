@@ -10,5 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.12"
+  },
+  "dependencies": {
+    "@types/validator": "^13.11.10",
+    "validator": "^13.12.0"
   }
 }
