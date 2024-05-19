@@ -1,0 +1,6 @@
+MVC
+
+M- Model = Usar banco de dados e processar dados
+V- View = Parte Visual
+C- Controller = Processo de organizar, criar novas rotas
+

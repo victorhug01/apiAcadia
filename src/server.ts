@@ -1,15 +1,26 @@
-import express, { Request, Response } from 'express';
-import path from 'path';
-import mainRoutes from './routes/index';
+import express, { Request, Response } from "express";
+import path from "path";
+import mustache from "mustache-express";
+import dotenv from "dotenv";
+import mainRoutes from "./routes/index";
+
+dotenv.config();
 
 const server = express();
 
-server.use(express.static(path.join(__dirname, '../public')));
+server.set("view engine", "mustache");
+server.set("views", path.join(__dirname, "views"));
+server.engine("mustache", mustache());
+
+server.use(express.static(path.join(__dirname, "../public")));
+
+//habilita ir no corpo da requisição e pegar os dados via post
+server.use(express.urlencoded({ extended: true }));
 
 server.use(mainRoutes);
 
-server.use((req: Request, res: Response)=>{
-    res.status(404).send('Página não encontrada!')
+server.use((req: Request, res: Response) => {
+  res.status(404).send("Página não encontrada!");
 });
 
-server.listen(80);
+server.listen(process.env.PORT);
